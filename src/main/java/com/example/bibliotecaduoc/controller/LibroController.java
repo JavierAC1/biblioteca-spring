@@ -19,4 +19,13 @@ public class LibroController {
         return libroService.getLibros();
     }
 
+    @GetMapping 
+    public List<Libro> listarLibros(){
+        return libroService.getLibros();
+    }
+
+    //vamos a añadir un nuevo endpoint para agregar un libro
+
 }
+
+//vamos añadira cositas para ver si funciona
