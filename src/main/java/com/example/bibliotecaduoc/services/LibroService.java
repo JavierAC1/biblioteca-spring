@@ -12,25 +12,37 @@ public class LibroService {
     @Autowired
     private LibroRepository libroRepository;
 
-    public List<Libro> getLibros(){
+    public List<Libro> getLibros() {
         return libroRepository.obteneLibros();
     }
 
-    public Libro savLibro(Libro libro){
+    public Libro savLibro(Libro libro) {
         return libroRepository.guardar(libro);
     }
 
-    public Libro getLibroId(int id){
+    public Libro getLibroId(int id) {
         return libroRepository.buscarPorId(id);
     }
 
-    public Libro updateLibro(Libro libro){
+    public Libro updateLibro(Libro libro) {
         return libroRepository.actualizar(libro);
     }
 
-    public String deleteLibro(int id){
+    public String deleteLibro(int id) {
         libroRepository.eliminar(id);
         return "producto eliminado";
+    }
+
+    public int totalLibros() {
+        return libroRepository.obteneLibros().size();
+    }
+
+    public int totalLibrosV1() {
+        return libroRepository.obteneLibros().size();
+    }
+
+    public int totalLibrosV2() {
+        return libroRepository.totalLibros();
     }
 
 }
