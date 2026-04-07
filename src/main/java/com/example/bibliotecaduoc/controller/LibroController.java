@@ -44,4 +44,27 @@ public class LibroController {
     public int totalLibrosV2() {
         return libroService.totalLibrosV2();
     }
+
+    // buscar por isbn
+    @GetMapping("/isbn/{isbn}")
+    public Libro getbuscarPorIsbn(@PathVariable String isbn) {
+        return libroService.getbuscarPorIsbn(isbn);
+    }
+
+    // buscar por ano
+    @GetMapping("/anopublicado")
+    public Libro getbuscarPorano(@PathVariable int fechaPublicacion) {
+        return libroService.getbuscarAno(fechaPublicacion);
+    }
+
+    // Profe
+    @GetMapping("/cantidadAno/{ano}")
+    public int cantidadLibrosPorAno(@PathVariable int ano) {
+        return libroService.cantidadLibrosPorAno(ano);
+    }
+
+    @GetMapping("/Autor/{autor}")
+    public List<Libro> obtenerPorAutor(@PathVariable String autor) {
+        return libroService.obtenerPorAutor(autor);
+    }
 }

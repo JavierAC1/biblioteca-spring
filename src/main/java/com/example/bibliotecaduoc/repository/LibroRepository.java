@@ -3,7 +3,11 @@ package com.example.bibliotecaduoc.repository;
 import com.example.bibliotecaduoc.model.Libro;
 import org.springframework.stereotype.Repository;
 
+import java.lang.foreign.Linker.Option;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Repository
@@ -50,7 +54,7 @@ public class LibroRepository {
     }
 
     // Buscar un libro por su isbn
-    public Libro buscarPorIsbn(String isbn) {
+    public Libro getbuscarPorIsbn(String isbn) {
         for (Libro libro : listaLibros) {
             if (libro.getIsbn().equals(isbn)) {
                 return libro;
@@ -119,5 +123,50 @@ public class LibroRepository {
     public int totalLibros() {
         return listaLibros.size();
     }
+
+    // Buscar cantidad de libro por año
+    public Libro buscarAno(int fechaPublicacion) {
+        for (Libro libro : listaLibros) {
+            if (libro.getId() == fechaPublicacion) {
+                return libro;
+            }
+        }
+        return null;
+    }
+
+    // buscar cnatidad de libro por año profesor
+    public int cantidadLibrosPorAno(int ano) {
+        int contador = 0;
+        for (int i = 0; i <= listaLibros.size(); i++) {
+            if (listaLibros.get(i).getFechaPublicacion() == ano) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    // Obtener autor
+    public List<Libro> obtenerPorAutor(String autor) {
+        List<Libro> listaAutor = new ArrayList<>();
+        for (Libro libro : listaLibros) {
+            if (libro.getAutor().equals(autor)) {
+                listaAutor.add(libro);
+            }
+        }
+        return listaAutor;
+    }
+
+    // Ordenar
+    public List<Libro> ordenarPorano() {
+        listaLibros.sort(Comparator.comparing(Libro::getFechaPublicacion));
+            return listaLibros;
+    }
+
+   //Antiguedad
+   public Libro masAntiguo(){
+        Libro libroAntiguo =     
+        listaLibros.stream().min(Comparator.comparing(Libro::getFechaPublicacion)).orElse(null);
+    return libroAntiguo;
+   }
 
 }

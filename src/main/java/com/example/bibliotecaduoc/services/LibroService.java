@@ -45,4 +45,23 @@ public class LibroService {
         return libroRepository.totalLibros();
     }
 
+    // buscar libro por isbn
+    public Libro getbuscarPorIsbn(String isbn) {
+        return libroRepository.getbuscarPorIsbn(isbn);
+    }
+
+    // buscar cantidad de libros por año
+    public Libro getbuscarAno(int fechaPublicacion) {
+        return libroRepository.buscarAno(fechaPublicacion);
+    }
+
+    // Profe
+    public int cantidadLibrosPorAno(int ano) {
+        return libroRepository.cantidadLibrosPorAno(ano);
+    }
+
+    public List<Libro> obtenerPorAutor(String autor) {
+        return libroRepository.obtenerPorAutor(autor);
+    }
+
 }
